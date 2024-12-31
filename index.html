@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>점심 메뉴 룰렛</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #f6d365, #fda085);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-bottom: 2px solid #ff6f61;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #ff6f61;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            padding: 30px;
+        }
+
+        .category {
+            margin: 20px 0;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #ff6f61;
+            margin-bottom: 10px;
+        }
+
+        .menu-list {
+            font-size: 1rem;
+            color: #555;
+            margin: 10px 0;
+            padding: 10px;
+            background: #fff5f3;
+            border-radius: 8px;
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff6f61, #ff8563);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #e55c50, #e96c5a);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .result {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>점심 메뉴 룰렛</h1>
+    </header>
+
+    <div class="container">
+        <div class="category">
+            <h2>[배달]</h2>
+            <div class="menu-list">분식, 뜸들이다, 토스트, 햄버거, 한솥</div>
+            <button id="spin-delivery">룰렛 돌리기</button>
+        </div>
+
+        <div class="category">
+            <h2>[샐러드]</h2>
+            <div class="menu-list">슬로우캘리, 샐러디, 서브웨이</div>
+            <button id="spin-salad">룰렛 돌리기</button>
+        </div>
+
+        <div class="category">
+            <h2>[뜨끈]</h2>
+            <div class="menu-list">이여곰탕, 외고집(미슐랭), 등촌샤브칼국수, 원조한방정통삼계탕, 전통백암순대국</div>
+            <button id="spin-warm">룰렛 돌리기</button>
+        </div>
+
+        <div class="category">
+            <h2>[가까운]</h2>
+            <div class="menu-list">이향, 김명자굴국밥, 곱도리탕</div>
+            <button id="spin-nearby">룰렛 돌리기</button>
+        </div>
+
+        <div class="category">
+            <h2>[기타]</h2>
+            <div class="menu-list">즉석떡볶이, 명인등심</div>
+            <button id="spin-etc">룰렛 돌리기</button>
+        </div>
+    </div>
+
+    <footer>
+        오늘의 점심을 결정하는 재미있는 도우미! © 2024
+    </footer>
+
+    <script>
+        const menus = {
+            delivery: ["분식", "뜸들이다", "토스트", "햄버거", "한솥"],
+            salad: ["슬로우캘리", "샐러디", "서브웨이"],
+            warm: ["이여곰탕", "외고집(미슐랭)", "등촌샤브칼국수", "원조한방정통삼계탕", "전통백암순대국"],
+            nearby: ["이향", "김명자굴국밥", "곱도리탕"],
+            etc: ["즉석떡볶이", "명인등심"]
+        };
+
+        document.getElementById('spin-delivery').addEventListener('click', () => {
+            spinRoulette('delivery');
+        });
+
+        document.getElementById('spin-salad').addEventListener('click', () => {
+            spinRoulette('salad');
+        });
+
+        document.getElementById('spin-warm').addEventListener('click', () => {
+            spinRoulette('warm');
+        });
+
+        document.getElementById('spin-nearby').addEventListener('click', () => {
+            spinRoulette('nearby');
+        });
+
+        document.getElementById('spin-etc').addEventListener('click', () => {
+            spinRoulette('etc');
+        });
+
+        function spinRoulette(category) {
+            const menu = menus[category];
+            const randomIndex = Math.floor(Math.random() * menu.length);
+
+            alert(`오늘의 메뉴는: ${menu[randomIndex]}!`);
+        }
+    </script>
+</body>
+</html>
