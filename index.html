@@ -87,6 +87,51 @@
             font-size: 0.9rem;
             color: #666;
         }
+
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #ff6f61;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .custom-alert h3 {
+            margin: 0 0 10px;
+            font-size: 1.5rem;
+            color: #ff6f61;
+        }
+
+        .custom-alert button {
+            background: linear-gradient(135deg, #ff6f61, #ff8563);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .custom-alert button:hover {
+            background: linear-gradient(135deg, #e55c50, #e96c5a);
+        }
+
+        .custom-alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
@@ -115,20 +160,27 @@
 
         <div class="category">
             <h2>[가까운]</h2>
-            <div class="menu-list">이향, 김명자굴국밥, 곱도리탕</div>
+            <div class="menu-list">이향(김치찜), 김명자굴국밥, 곱도리탕</div>
             <button id="spin-nearby">룰렛 돌리기</button>
         </div>
 
         <div class="category">
             <h2>[기타]</h2>
-            <div class="menu-list">즉석떡볶이, 명인등심</div>
+            <div class="menu-list">즉석떡볶이, 명인등심, 뚝배기 제육</div>
             <button id="spin-etc">룰렛 돌리기</button>
         </div>
     </div>
 
     <footer>
-        오늘의 점심을 결정하는 재미있는 도우미! © 2024
+        밥! 점심!! 밥!
     </footer>
+
+    <div class="custom-alert-overlay" id="alert-overlay" style="display: none;"></div>
+    <div class="custom-alert" id="custom-alert" style="display: none;">
+        <h3>오늘의 메뉴!</h3>
+        <p id="alert-message"></p>
+        <button id="close-alert">닫기</button>
+    </div>
 
     <script>
         const menus = {
@@ -162,9 +214,17 @@
         function spinRoulette(category) {
             const menu = menus[category];
             const randomIndex = Math.floor(Math.random() * menu.length);
+            const selectedMenu = menu[randomIndex];
 
-            alert(`오늘의 메뉴는: ${menu[randomIndex]}!`);
+            document.getElementById('alert-message').textContent = selectedMenu;
+            document.getElementById('alert-overlay').style.display = 'block';
+            document.getElementById('custom-alert').style.display = 'block';
         }
+
+        document.getElementById('close-alert').addEventListener('click', () => {
+            document.getElementById('alert-overlay').style.display = 'none';
+            document.getElementById('custom-alert').style.display = 'none';
+        });
     </script>
 </body>
 </html>
